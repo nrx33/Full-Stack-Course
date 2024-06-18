@@ -30,12 +30,28 @@ const App = () => {
     return newRandom;
   }
 
+  const highestVotes = () => {
+    let highest = 0
+    let index = 0
+
+    for (let i = 0; i < votes.length; i++) {
+      if (votes[i] > highest) {
+        highest = votes[i]
+        index = i
+      }
+    }
+    return index
+  }
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <button onClick={() => setSelected(generateRandom())}>Next Anecdote</button>
       <button onClick={() => handleVotes()}>Vote</button>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[highestVotes()]}</p>
     </div>
   )
 }
